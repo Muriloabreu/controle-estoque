@@ -6,48 +6,44 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.api.controleestoque.models.ClienteModel;
-import com.api.controleestoque.repositories.ClienteRepository;
+import com.api.controleestoque.models.EntradaProdutoModel;
+import com.api.controleestoque.repositories.EntradaProdutoRepository;
 
 import jakarta.transaction.Transactional;
 
 @Service
-public class ClienteServiceImpl implements ClienteService {
+public class EntradaProdutoServiceImpl implements EntradaProdutoService {
 
 	@Autowired
-	ClienteRepository clienteRepository;
+	EntradaProdutoRepository entradaProdutoRepository;
 	
 	@Override
-	public List<ClienteModel> findAll() {
+	public List<EntradaProdutoModel> findAll() {
 		
-		return clienteRepository.findAll();
+		return entradaProdutoRepository.findAll();
 	}
 
 	@Override
-	public Optional<ClienteModel> findById(Long id) {
+	public Optional<EntradaProdutoModel> findById(Long id) {
 		
-		return clienteRepository.findById(id);
-	}
-
-	@Override
-	@Transactional
-	public ClienteModel save(ClienteModel cliente) {
-		
-		return clienteRepository.save(cliente);
+		return entradaProdutoRepository.findById(id);
 	}
 
 	@Override
 	@Transactional
-	public void delete(ClienteModel cliente) {
+	public EntradaProdutoModel save(EntradaProdutoModel cliente) {
 		
-		clienteRepository.delete(cliente);
-		
+		return entradaProdutoRepository.save(cliente);
 	}
 
 	@Override
-	public boolean existsByCpf(String cpf) {
+	@Transactional
+	public void delete(EntradaProdutoModel cliente) {
 		
-		return clienteRepository.existsByCpf(cpf);
+		entradaProdutoRepository.delete(cliente);
+		
 	}
+
+	
 
 }
