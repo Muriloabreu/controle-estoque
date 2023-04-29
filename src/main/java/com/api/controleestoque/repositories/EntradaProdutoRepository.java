@@ -3,10 +3,10 @@ package com.api.controleestoque.repositories;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.api.controleestoque.models.ClienteModel;
+import com.api.controleestoque.models.EntradaProdutoModel;
 
 @Repository
-public interface ClienteRepository extends JpaRepository<ClienteModel, Long> {
+public interface EntradaProdutoRepository extends JpaRepository<EntradaProdutoModel, Long> {
 
-	boolean existsByCpf(String cpf);
+	
 }
