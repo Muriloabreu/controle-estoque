@@ -43,9 +43,15 @@ public class FornecedorServiceImpl implements FornecedorService{
 	}
 
 	@Override
-	public boolean existsByCpf(String nome) {
+	public boolean existsByNome(String nome) {
 		
 		return fornecedorRepository.existsByNome(nome);
+	}
+
+	@Override
+	public boolean existsByCnpj(String cnpj) {
+		
+		return fornecedorRepository.existsByCnpj(cnpj);
 	}
 
 }
