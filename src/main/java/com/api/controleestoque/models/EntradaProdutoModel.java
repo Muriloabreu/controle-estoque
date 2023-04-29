@@ -20,7 +20,7 @@ public class EntradaProdutoModel {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	@ManyToOne
-	@JoinColumn(name = "id_entrada_Produto")
+	@JoinColumn(name = "id_Produto")
 	private ProdutosModel produtosModel;
 	@Column(nullable = false)
     private Double precoUnitario;
