@@ -19,7 +19,7 @@ import com.api.controleestoque.services.FornecedorService;
 import jakarta.validation.Valid;
 
 @RestController
-@RequestMapping("/estoque/fornecedores")
+@RequestMapping("/controle-estoque/fornecedores")
 public class FornecedorController {
 
 	@Autowired
