@@ -11,5 +11,5 @@ public interface FornecedorService {
 	Optional<FornecedorModel> findById(Long id);
 	FornecedorModel save(FornecedorModel fornecedor);
 	void delete(FornecedorModel fornecedor);
-	boolean existsByCpf(String cpf);
+	boolean existsByCpf(String nome);
 }
