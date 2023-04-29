@@ -1,5 +1,7 @@
 package com.api.controleestoque.models;
 
+import java.time.LocalDateTime;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -18,18 +20,26 @@ public class FornecedorModel {
 	private String nome;
 	@Column(nullable = false, length = 100)
 	private String cnpj;
+	@Column(nullable = false)
+	private LocalDateTime dataRegistro;
+	
 	
 	/* Construtor */
 	public FornecedorModel() {
 		super();
 	}
 
-	public FornecedorModel(Long id, String nome, String cnpj) {
+	
+
+	public FornecedorModel(Long id, String nome, String cnpj, LocalDateTime dataRegistro) {
 		super();
 		this.id = id;
 		this.nome = nome;
 		this.cnpj = cnpj;
+		this.dataRegistro = dataRegistro;
 	}
+
+
 
 	/* Métodos Acessores */
 	public Long getId() {
@@ -56,6 +66,12 @@ public class FornecedorModel {
 		this.cnpj = cnpj;
 	}
 	
+	public LocalDateTime getDataRegistro() {
+		return dataRegistro;
+	}
 	
+	public void setDataRegistro(LocalDateTime dataRegistro) {
+		this.dataRegistro = dataRegistro;
+	}
 
 }
