@@ -8,6 +8,8 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -25,6 +27,7 @@ public class FornecedorController {
 	@Autowired
 	FornecedorService fornecedorService;
 	
+	@PostMapping
 	public ResponseEntity<Object> saveFornecedor(@RequestBody @Valid FornecedorDtos fornecedorDtos){
 		
 		if(fornecedorService.existsByCnpj(fornecedorDtos.getCnpj())) {
@@ -44,6 +47,7 @@ public class FornecedorController {
 		
 	}
 	
+	@GetMapping
 	public ResponseEntity<List<FornecedorModel>> findAllFornecedores(){
 		
 		return ResponseEntity.status(HttpStatus.OK).body(fornecedorService.findAll());
