@@ -7,4 +7,5 @@ import com.api.controleestoque.models.FornecedorModel;
 public interface FornecedorRepository extends JpaRepository<FornecedorModel, Long> {
 
 	boolean existsByNome(String nome);
+	boolean existsByCnpj(String cnpj);
 }
