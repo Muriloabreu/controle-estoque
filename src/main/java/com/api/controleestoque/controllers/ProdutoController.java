@@ -40,6 +40,11 @@ public class ProdutoController {
 		
 		var produtoModel = new ProdutosModel();
 		BeanUtils.copyProperties(produtoDtos, produtoModel);
+		if(produtoModel.getEstoqueAtual() == null) {
+			
+			produtoModel.setEstoqueAtual(0);
+		}
+		
 		produtoModel.setDataRegistro(LocalDateTime.now(ZoneId.of("UTC")));
 		
 		return ResponseEntity.status(HttpStatus.OK).body(produtoService.save(produtoModel));		
