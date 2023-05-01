@@ -118,10 +118,7 @@ public class ProdutosModel {
 	}
 	
 	public Integer getEstoqueAtual() {
-		
-		Integer estoqueInicial = 0;
-		
-		return estoqueInicial;
+		return estoqueAtual;
 	}
 	
 	public void setEstoqueAtual(Integer estoqueAtual) {
