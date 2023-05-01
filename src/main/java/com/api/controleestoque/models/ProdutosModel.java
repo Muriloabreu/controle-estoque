@@ -10,6 +10,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -34,6 +35,9 @@ public class ProdutosModel {
     @ManyToOne
     @JoinColumn(name = "id_categoria", referencedColumnName = "id")
     private CategoriaModel categoria;
+    @OneToOne
+    @JoinColumn(name = "id_fornecedor", referencedColumnName = "id")
+    private FornecedorModel fornecedor;
 	
     /* Construtor */
     
@@ -41,8 +45,10 @@ public class ProdutosModel {
 		super();
 	}
 
+	
+	
 	public ProdutosModel(Long id, String nome, String descricao, Integer quantidadeMinima, Integer quantidadeMaxima,
-			Integer estoqueAtual ,LocalDateTime dataRegistro) {
+			Integer estoqueAtual, LocalDateTime dataRegistro, CategoriaModel categoria, FornecedorModel fornecedor) {
 		super();
 		this.id = id;
 		this.nome = nome;
@@ -51,8 +57,12 @@ public class ProdutosModel {
 		this.quantidadeMaxima = quantidadeMaxima;
 		this.estoqueAtual = estoqueAtual;
 		this.dataRegistro = dataRegistro;
+		this.categoria = categoria;
+		this.fornecedor = fornecedor;
 	}
-	
+
+
+
 	/* Métodos Acessores */
 	
 	public Long getId() {
@@ -125,18 +135,44 @@ public class ProdutosModel {
 	public void setDataRegistro(LocalDateTime dataRegistro) {
 		this.dataRegistro = dataRegistro;
 	}
+	
+
+	public CategoriaModel getCategoria() {
+		return categoria;
+	}
+
+	public void setCategoria(CategoriaModel categoria) {
+		this.categoria = categoria;
+	}
+
+	public FornecedorModel getFornecedor() {
+		return fornecedor;
+	}
+
+
+
+	public void setFornecedor(FornecedorModel fornecedor) {
+		this.fornecedor = fornecedor;
+	}
+
+
 
 	@Override
 	public String toString() {
 		return "ProdutosModel [id=" + id + ", nome=" + nome + ", descricao=" + descricao + ", quantidadeMinima="
 				+ quantidadeMinima + ", quantidadeMaxima=" + quantidadeMaxima + ", estoqueAtual=" + estoqueAtual
-				+ ", dataRegistro=" + dataRegistro + "]";
+				+ ", dataRegistro=" + dataRegistro + ", categoria=" + categoria + ", fornecedor=" + fornecedor + "]";
 	}
+
+
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(dataRegistro, descricao, estoqueAtual, id, nome, quantidadeMaxima, quantidadeMinima);
+		return Objects.hash(categoria, dataRegistro, descricao, estoqueAtual, fornecedor, id, nome, quantidadeMaxima,
+				quantidadeMinima);
 	}
+
+
 
 	@Override
 	public boolean equals(Object obj) {
@@ -147,11 +183,16 @@ public class ProdutosModel {
 		if (getClass() != obj.getClass())
 			return false;
 		ProdutosModel other = (ProdutosModel) obj;
-		return Objects.equals(dataRegistro, other.dataRegistro) && Objects.equals(descricao, other.descricao)
-				&& Objects.equals(estoqueAtual, other.estoqueAtual) && Objects.equals(id, other.id)
+		return Objects.equals(categoria, other.categoria) && Objects.equals(dataRegistro, other.dataRegistro)
+				&& Objects.equals(descricao, other.descricao) && Objects.equals(estoqueAtual, other.estoqueAtual)
+				&& Objects.equals(fornecedor, other.fornecedor) && Objects.equals(id, other.id)
 				&& Objects.equals(nome, other.nome) && Objects.equals(quantidadeMaxima, other.quantidadeMaxima)
 				&& Objects.equals(quantidadeMinima, other.quantidadeMinima);
 	}
+
+	
+
+	
 
 	
     
