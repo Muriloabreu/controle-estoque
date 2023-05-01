@@ -26,6 +26,8 @@ public class ProdutosModel {
     @Column(nullable = false)
     private Integer quantidadeMaxima;
     @Column(nullable = false)
+    private Integer estoqueAtual;
+    @Column(nullable = false)
     private LocalDateTime dataRegistro;
 	
     /* Construtor */
@@ -35,13 +37,14 @@ public class ProdutosModel {
 	}
 
 	public ProdutosModel(Long id, String nome, String descricao, Integer quantidadeMinima, Integer quantidadeMaxima,
-			LocalDateTime dataRegistro) {
+			Integer estoqueAtual ,LocalDateTime dataRegistro) {
 		super();
 		this.id = id;
 		this.nome = nome;
 		this.descricao = descricao;
 		this.quantidadeMinima = quantidadeMinima;
 		this.quantidadeMaxima = quantidadeMaxima;
+		this.estoqueAtual = estoqueAtual;
 		this.dataRegistro = dataRegistro;
 	}
 	
@@ -72,6 +75,12 @@ public class ProdutosModel {
 	}
 
 	public Integer getQuantidadeMinima() {
+		
+		if (estoqueAtual < quantidadeMinima) {
+			
+			System.out.println( "Estoque esta critico! ");
+		}	
+		
 		return quantidadeMinima;
 	}
 
@@ -80,11 +89,25 @@ public class ProdutosModel {
 	}
 
 	public Integer getQuantidadeMaxima() {
+		
+		if(estoqueAtual > quantidadeMaxima) {
+			
+			System.out.println("Estoque está maior que o permitido");
+		}
+		
 		return quantidadeMaxima;
 	}
 
 	public void setQuantidadeMaxima(Integer quantidadeMaxima) {
 		this.quantidadeMaxima = quantidadeMaxima;
+	}
+	
+	public Integer getEstoqueAtual() {
+		return estoqueAtual;
+	}
+	
+	public void setEstoqueAtual(Integer estoqueAtual) {
+		this.estoqueAtual = estoqueAtual;
 	}
 
 	public LocalDateTime getDataRegistro() {
@@ -98,12 +121,13 @@ public class ProdutosModel {
 	@Override
 	public String toString() {
 		return "ProdutosModel [id=" + id + ", nome=" + nome + ", descricao=" + descricao + ", quantidadeMinima="
-				+ quantidadeMinima + ", quantidadeMaxima=" + quantidadeMaxima + ", dataRegistro=" + dataRegistro + "]";
+				+ quantidadeMinima + ", quantidadeMaxima=" + quantidadeMaxima + ", estoqueAtual=" + estoqueAtual
+				+ ", dataRegistro=" + dataRegistro + "]";
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(dataRegistro, descricao, id, nome, quantidadeMaxima, quantidadeMinima);
+		return Objects.hash(dataRegistro, descricao, estoqueAtual, id, nome, quantidadeMaxima, quantidadeMinima);
 	}
 
 	@Override
@@ -116,10 +140,12 @@ public class ProdutosModel {
 			return false;
 		ProdutosModel other = (ProdutosModel) obj;
 		return Objects.equals(dataRegistro, other.dataRegistro) && Objects.equals(descricao, other.descricao)
-				&& Objects.equals(id, other.id) && Objects.equals(nome, other.nome)
-				&& Objects.equals(quantidadeMaxima, other.quantidadeMaxima)
+				&& Objects.equals(estoqueAtual, other.estoqueAtual) && Objects.equals(id, other.id)
+				&& Objects.equals(nome, other.nome) && Objects.equals(quantidadeMaxima, other.quantidadeMaxima)
 				&& Objects.equals(quantidadeMinima, other.quantidadeMinima);
 	}
+
+	
     
     
     
