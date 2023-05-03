@@ -3,6 +3,7 @@ package com.api.controleestoque.controllers;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.api.controleestoque.dtos.EntradaProdutoDtos;
+import com.api.controleestoque.models.CategoriaModel;
 import com.api.controleestoque.models.EntradaProdutoModel;
 import com.api.controleestoque.models.ProdutosModel;
 import com.api.controleestoque.services.EntradaProdutoService;
@@ -40,13 +42,16 @@ public class EntradaProdutoController {
 		var entradaProdutoModel = new EntradaProdutoModel();
 		BeanUtils.copyProperties(entradaProdutoDtos, entradaProdutoModel);		
 		
-		if (entradaProdutoModel.getProdutosModel().getEstoqueAtual() == null) {
+		Optional<ProdutosModel> produtoOptional = entradaProdutoService.findByIdProduto(entradaProdutoModel.getProdutosModel().getId());
+			
+		var produtoModel = produtoOptional.get();
+		if (produtoModel.getEstoqueAtual() == null) {
 
-			entradaProdutoModel.getProdutosModel().setEstoqueAtual(0);
+			produtoModel.setEstoqueAtual(0);
 	
 		}
+		produtoModel.setEstoqueAtual( entradaProdutoModel.getQuantidade() + produtoModel.getEstoqueAtual() );
 			
-			entradaProdutoModel.getProdutosModel().setEstoqueAtual(entradaProdutoModel.getQuantidade() + entradaProdutoModel.getProdutosModel().getEstoqueAtual());
 			entradaProdutoModel.setDataRegistro(LocalDateTime.now(ZoneId.of("UTC")));
 			
 		
