@@ -8,8 +8,9 @@
 Controle de estoque é uma API REST.
 
 API - Java utilizando Spring boot com o proposito de realizar Vários CRUDs para controle de estoque.  
+Nessa API devemos cadastrar um Produto, informando sua Categoria, e qual é o Fornecedor e a data e hora atual. Para manipulação do estoque, vamos cadastrar entradas de produto, onde informamos o Produto, sua quantidade e valor do produto e a data e hora atual, ao realizar essa entrada de produto o campo "Estoque Atual" é alimentado. e é localizado produto. Para manipulação de estoque de saída,  cadastramos uma saída de produto, informando o Produto, qual é a quantidade e a data e hora atual, ao realizar essa saída de produto o campo "Estoque Atual" é subtraído.
 
-Os CRUD são:
+Os CRUDs são:
 - Categoria do produto; 
 - Fornecedor; 
 - Produto;
