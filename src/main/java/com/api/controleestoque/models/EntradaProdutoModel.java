@@ -2,6 +2,7 @@ package com.api.controleestoque.models;
 
 
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -87,6 +88,31 @@ public class EntradaProdutoModel {
 
 	public void setDataRegistro(LocalDateTime dataRegistro) {
 		this.dataRegistro = dataRegistro;
+	}
+
+	@Override
+	public String toString() {
+		return "EntradaProdutoModel [id=" + id + ", produtosModel=" + produtosModel + ", precoUnitario=" + precoUnitario
+				+ ", quantidade=" + quantidade + ", dataRegistro=" + dataRegistro + "]";
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(dataRegistro, id, precoUnitario, produtosModel, quantidade);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		EntradaProdutoModel other = (EntradaProdutoModel) obj;
+		return Objects.equals(dataRegistro, other.dataRegistro) && Objects.equals(id, other.id)
+				&& Objects.equals(precoUnitario, other.precoUnitario)
+				&& Objects.equals(produtosModel, other.produtosModel) && Objects.equals(quantidade, other.quantidade);
 	}
 	
 	
