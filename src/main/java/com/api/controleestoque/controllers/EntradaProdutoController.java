@@ -15,10 +15,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.api.controleestoque.dtos.EntradaProdutoDtos;
-import com.api.controleestoque.dtos.ProdutoDtos;
 import com.api.controleestoque.models.EntradaProdutoModel;
 import com.api.controleestoque.models.ProdutosModel;
 import com.api.controleestoque.services.EntradaProdutoService;
+import com.api.controleestoque.services.ProdutoService;
 
 import jakarta.validation.Valid;
 
@@ -29,6 +29,8 @@ public class EntradaProdutoController {
 	
 	@Autowired
 	EntradaProdutoService entradaProdutoService;
+	@Autowired
+	ProdutoService produtoService;
 	
 	
 	@PostMapping
@@ -38,17 +40,15 @@ public class EntradaProdutoController {
 		var entradaProdutoModel = new EntradaProdutoModel();
 		BeanUtils.copyProperties(entradaProdutoDtos, entradaProdutoModel);		
 		
-		entradaProdutoModel.setDataRegistro(LocalDateTime.now(ZoneId.of("UTC")));
-		
-		
 		if (entradaProdutoModel.getProdutosModel().getEstoqueAtual() == null) {
 
 			entradaProdutoModel.getProdutosModel().setEstoqueAtual(0);
 	
 		}
 			
-			entradaProdutoModel.getProdutosModel().setEstoqueAtual(entradaProdutoModel.getProdutosModel().getEstoqueAtual() + entradaProdutoModel.getQuantidade());
-		
+			entradaProdutoModel.getProdutosModel().setEstoqueAtual(entradaProdutoModel.getQuantidade() + entradaProdutoModel.getProdutosModel().getEstoqueAtual());
+			entradaProdutoModel.setDataRegistro(LocalDateTime.now(ZoneId.of("UTC")));
+			
 		
 		return ResponseEntity.status(HttpStatus.OK).body(entradaProdutoService.save(entradaProdutoModel));		
 		
