@@ -7,7 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.api.controleestoque.models.EntradaProdutoModel;
+import com.api.controleestoque.models.ProdutosModel;
 import com.api.controleestoque.repositories.EntradaProdutoRepository;
+import com.api.controleestoque.repositories.ProdutoRepository;
 
 import jakarta.transaction.Transactional;
 
@@ -16,6 +18,8 @@ public class EntradaProdutoServiceImpl implements EntradaProdutoService {
 
 	@Autowired
 	EntradaProdutoRepository entradaProdutoRepository;
+	@Autowired
+	ProdutoRepository produtoRepository;
 	
 	@Override
 	public List<EntradaProdutoModel> findAll() {
@@ -42,6 +46,13 @@ public class EntradaProdutoServiceImpl implements EntradaProdutoService {
 		
 		entradaProdutoRepository.delete(cliente);
 		
+	}
+
+	@Override
+	public Optional<ProdutosModel> findByIdProduto(Long id) {
+		
+		
+		return produtoRepository.findById(id);
 	}
 
 	
