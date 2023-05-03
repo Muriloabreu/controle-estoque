@@ -22,8 +22,6 @@ public class SaidaProdutoModel {
 	@ManyToOne
 	@JoinColumn(name = "id_Produto")
 	private ProdutosModel produtosModel;
-	@Column(nullable = false)
-    private Double precoUnitario;
     @Column(nullable = false)
     private Integer quantidade;
     @Column(nullable = false)
@@ -35,12 +33,11 @@ public class SaidaProdutoModel {
 		super();
 	}
 	
-	public SaidaProdutoModel(Long id, ProdutosModel produtosModel, Double precoUnitario, Integer quantidade,
+	public SaidaProdutoModel(Long id, ProdutosModel produtosModel, Integer quantidade,
 			LocalDateTime dataRegistro) {
 		super();
 		this.id = id;
 		this.produtosModel = produtosModel;
-		this.precoUnitario = precoUnitario;
 		this.quantidade = quantidade;
 		this.dataRegistro = dataRegistro;
 	}
@@ -62,12 +59,6 @@ public class SaidaProdutoModel {
 	public void setProdutosModel(ProdutosModel produtosModel) {
 		this.produtosModel = produtosModel;
 	}
-	public Double getPrecoUnitario() {
-		return precoUnitario;
-	}
-	public void setPrecoUnitario(Double precoUnitario) {
-		this.precoUnitario = precoUnitario;
-	}
 	public Integer getQuantidade() {
 		return quantidade;
 	}
@@ -83,13 +74,13 @@ public class SaidaProdutoModel {
 
 	@Override
 	public String toString() {
-		return "SaidaProdutoModel [id=" + id + ", produtosModel=" + produtosModel + ", precoUnitario=" + precoUnitario
-				+ ", quantidade=" + quantidade + ", dataRegistro=" + dataRegistro + "]";
+		return "SaidaProdutoModel [id=" + id + ", produtosModel=" + produtosModel + ", quantidade=" + quantidade
+				+ ", dataRegistro=" + dataRegistro + "]";
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(dataRegistro, id, precoUnitario, produtosModel, quantidade);
+		return Objects.hash(dataRegistro, id, produtosModel, quantidade);
 	}
 
 	@Override
@@ -102,9 +93,11 @@ public class SaidaProdutoModel {
 			return false;
 		SaidaProdutoModel other = (SaidaProdutoModel) obj;
 		return Objects.equals(dataRegistro, other.dataRegistro) && Objects.equals(id, other.id)
-				&& Objects.equals(precoUnitario, other.precoUnitario)
 				&& Objects.equals(produtosModel, other.produtosModel) && Objects.equals(quantidade, other.quantidade);
 	}
+
+	
+	
     
     
     
