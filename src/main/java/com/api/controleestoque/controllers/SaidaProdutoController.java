@@ -43,18 +43,20 @@ public class SaidaProdutoController {
 		Optional<ProdutosModel> produtoOptional = saidaProdutoService.findByIdProduto(saidaProdutoModel.getProdutosModel().getId());
 			
 		var produtoModel = produtoOptional.get();
-		if (produtoModel.getEstoqueAtual() >  0) {
+		if (produtoModel.getEstoqueAtual() == 0) {
 			
-			produtoModel.setEstoqueAtual( saidaProdutoModel.getQuantidade() - produtoModel.getEstoqueAtual() );
-			
-			saidaProdutoModel.setDataRegistro(LocalDateTime.now(ZoneId.of("UTC")));
-				
-			
-			return ResponseEntity.status(HttpStatus.OK).body(saidaProdutoService.save(saidaProdutoModel));			
-	
+			return ResponseEntity.status(HttpStatus.CONFLICT)
+					.body("Conflict: Estoque zerado! Não será possivel continuar ");
+
 		}
-				
-		return ResponseEntity.status(HttpStatus.CONFLICT).body("Conflict: Estoque zerado! Não será possivel continuar ");
+		
+		produtoModel.setEstoqueAtual( produtoModel.getEstoqueAtual() - saidaProdutoModel.getQuantidade()   );
+		
+		saidaProdutoModel.setDataRegistro(LocalDateTime.now(ZoneId.of("UTC")));
+			
+		
+		return ResponseEntity.status(HttpStatus.OK).body(saidaProdutoService.save(saidaProdutoModel));	
+		
 	}
 	
 	@GetMapping
