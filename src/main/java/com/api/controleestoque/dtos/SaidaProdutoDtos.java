@@ -8,7 +8,7 @@ public class SaidaProdutoDtos {
 	
 	
 	@NotNull
-	private ProdutosModel produto;
+	private ProdutosModel produtosModel;
 	@NotNull
 	private Integer quantidade;
 	
@@ -17,23 +17,19 @@ public class SaidaProdutoDtos {
 		super();
 	}
 
-
-	public SaidaProdutoDtos(@NotNull ProdutosModel produto, @NotNull Integer quantidade) {
-		
-		this.produto = produto;
+	public SaidaProdutoDtos(@NotNull ProdutosModel produtosModel, @NotNull Integer quantidade) {
+		super();
+		this.produtosModel = produtosModel;
 		this.quantidade = quantidade;
 	}
 
-
 	public ProdutosModel getProdutosModel() {
-		return produto;
+		return produtosModel;
 	}
 
-
-	public void setProdutosModel(ProdutosModel produto) {
-		this.produto = produto;
+	public void setProdutosModel(ProdutosModel produtosModel) {
+		this.produtosModel = produtosModel;
 	}
-
 
 	public Integer getQuantidade() {
 		return quantidade;
@@ -44,6 +40,11 @@ public class SaidaProdutoDtos {
 		this.quantidade = quantidade;
 	}
 	
+	
+
+	
+
+
 	
 	
 	
