@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.api.controleestoque.dtos.EntradaProdutoDtos;
-import com.api.controleestoque.models.CategoriaModel;
 import com.api.controleestoque.models.EntradaProdutoModel;
 import com.api.controleestoque.models.ProdutosModel;
 import com.api.controleestoque.services.EntradaProdutoService;
